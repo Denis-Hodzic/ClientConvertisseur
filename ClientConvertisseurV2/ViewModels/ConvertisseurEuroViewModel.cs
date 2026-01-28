@@ -23,6 +23,7 @@ namespace ClientConvertisseurV2.ViewModels
         public ConvertisseurEuroViewModel()
         {
             BtnSetConversion = new RelayCommand(ActionSetConversion);
+            GetDataOnloadAsync();
         }
 
         public void ActionSetConversion()
@@ -38,10 +39,7 @@ namespace ClientConvertisseurV2.ViewModels
         }
 
 
-        public async void Initialize()
-        {
-            await GetDataOnloadAsync();
-        }
+
 
         private double euro;
         public double Euro
@@ -88,7 +86,7 @@ namespace ClientConvertisseurV2.ViewModels
             }
         }
 
-        private async System.Threading.Tasks.Task GetDataOnloadAsync()
+        public async void GetDataOnloadAsync()
         {
             WSService ws = new WSService("https://localhost:7073/api/");
             List<Devise>? result = await ws.GetDevisesAsync("devises");

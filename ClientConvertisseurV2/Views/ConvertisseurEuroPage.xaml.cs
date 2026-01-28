@@ -49,7 +49,7 @@ namespace ClientConvertisseurV2.Views
                 await dialog.ShowAsync();
             };
 
-            this.Loaded += (_, __) => viewModel.Initialize();
+            //this.Loaded += (_, __) => viewModel;
 
             //this.Loaded += (s, e) =>
             //{

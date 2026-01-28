@@ -1,12 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClientConvertisseurV2.Models;
 using ClientConvertisseurV2.ViewModels;
+using Microsoft.UI.Xaml.Interop;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml.Interop;
-using ClientConvertisseurV2.Models;
 
 namespace ClientConvertisseurV2.ViewModels.Tests
 {
@@ -20,26 +21,35 @@ namespace ClientConvertisseurV2.ViewModels.Tests
             Assert.IsNotNull(convertisseurEuro);
         }
 
-        //[TestMethod()]
-        //public void ActionSetConversionTest()
-        //{
-        //    //Arrange
-        //    List<Devise> listesDevises = new List<Devise>()
-        //    {
-        //        new Devise(1, "Dollar", 1.1),
-        //        new Devise(2, "Livre", 0.9),
-        //        new Devise(3, "Yen", 130.0)
-        //    };
-        //    ConvertisseurEuroViewModel convertisseurEuro = new ConvertisseurEuroViewModel();
-        //    //Act
-        //    convertisseurEuro.Euro = 100.0;
-        //    var euroAmount = convertisseurEuro.Euro;
-        //    convertisseurEuro.DeviseSelected = listesDevises.First(d => d.NomDevise == "Dollar");
-        //    var deviseSelected = convertisseurEuro.DeviseSelected;
-        //    var res= euroAmount * deviseSelected.Taux;
-        //    //Assert
-        //    Assert.AreEqual(105, res,"res attendu 108");
-        //}
+        [TestMethod]
+        public void ActionSetConversionTest()
+        {
+            // Arrange
+            var listesDevises = new List<Devise>()
+            {
+                new Devise(1, "Dollar", 1.08),
+                new Devise(2, "Franc Suisse", 1.07),
+                new Devise(3, "Yen", 130.0)
+            };
+
+            var viewModel = new ConvertisseurEuroViewModel();
+
+            // On injecte les devises dans le VM
+            viewModel.Devises = new ObservableCollection<Devise>(listesDevises);
+
+            // Montant en euros
+            viewModel.Euro = 100.0;
+
+            // Sélection de la devise
+            viewModel.DeviseSelected = viewModel.Devises.First(d => d.NomDevise == "Franc Suisse");
+
+            // Act
+            viewModel.BtnSetConversion.Execute(null); // <-- c’est ça qu’on teste
+
+            // Assert
+            Assert.AreEqual(107.0, viewModel.Resultat, "Résultat attendu = 107");
+        }
+
 
         [TestMethod()]
         public void GetDataOnLoadAsyncTest_OK()
@@ -47,7 +57,7 @@ namespace ClientConvertisseurV2.ViewModels.Tests
             //Arrange
             ConvertisseurEuroViewModel convertisseurEuro = new ConvertisseurEuroViewModel();
             //Act
-            convertisseurEuro.Initialize();
+            convertisseurEuro.GetDataOnloadAsync();
             Thread.Sleep(1000);
             //Assert
             Assert.IsNotNull(convertisseurEuro.Devises);
