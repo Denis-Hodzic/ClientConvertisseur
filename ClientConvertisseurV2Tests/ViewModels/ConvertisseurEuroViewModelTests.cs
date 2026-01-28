@@ -62,5 +62,17 @@ namespace ClientConvertisseurV2.ViewModels.Tests
             //Assert
             Assert.IsNotNull(convertisseurEuro.Devises);
         }
+
+        [TestMethod()]
+        public void GetDataOnLoadAsyncTest_NotOK()
+        {
+            //Arrange
+            ConvertisseurEuroViewModel convertisseurEuro = new ConvertisseurEuroViewModel();
+            //Act
+            convertisseurEuro.GetDataOnloadAsync();
+            Thread.Sleep(1000);
+            //Assert
+            Assert.IsNull(convertisseurEuro.Devises);
+        }
     }
 }
