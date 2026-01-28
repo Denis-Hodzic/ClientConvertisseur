@@ -8,7 +8,71 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <RelativePanel>
+        <!-- Titre -->
+        <TextBlock
+        x:Name="TxtTitre"
+        Text="Convertisseur"
+        FontSize="24"
+        FontWeight="Bold"
+        Foreground="Red"
+        Margin="0,20,0,20"
+        RelativePanel.AlignHorizontalCenterWithPanel="True" />
 
-    </Grid>
+        <!-- Label montant euros -->
+        <TextBlock
+        x:Name="TxtMontantEuro"
+        Text="Montant en Euros"
+        Margin="0,20,0,5"
+        RelativePanel.Below="TxtTitre"
+        RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <!-- TextBox euros -->
+        <TextBox
+        x:Name="TxtEuro"
+        Text="{Binding Euro, Mode=TwoWay}"
+        Width="200"
+        Margin="0,0,0,15"
+        RelativePanel.Below="TxtMontantEuro"
+        RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <!-- ComboBox devises -->
+        <ComboBox
+        x:Name="CbDevises"
+        Width="200"
+        PlaceholderText="Devise"
+        Margin="0,0,0,15"
+        RelativePanel.Below="TxtEuro"
+        RelativePanel.AlignHorizontalCenterWithPanel="True"
+        ItemsSource="{Binding Devises}"
+        DisplayMemberPath="NomDevise"
+        SelectedItem="{Binding DeviseSelected, Mode=TwoWay}"/>
+
+        <!-- Bouton convertir -->
+        <Button
+        x:Name="BtnConvertir"
+        Content="Convertir"
+        Width="200"
+        Margin="0,0,0,20"
+        RelativePanel.Below="CbDevises"
+        RelativePanel.AlignHorizontalCenterWithPanel="True"
+        Command="{Binding BtnSetConversion}"/>
+
+        <!-- Label résultat -->
+        <TextBlock
+        x:Name="TxtMontantDevise"
+        Text="Montant en devises"
+        Margin="0,0,0,5"
+        RelativePanel.Below="BtnConvertir"
+        RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <!-- TextBox résultat (lecture seule) -->
+        <TextBox
+        x:Name="TxtResultat"
+        Text="{Binding Resultat, Mode=TwoWay}"
+        Width="200"
+        IsReadOnly="True"
+        RelativePanel.Below="TxtMontantDevise"
+        RelativePanel.AlignHorizontalCenterWithPanel="True" />
+    </RelativePanel>
 </Page>
