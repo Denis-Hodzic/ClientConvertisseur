@@ -26,10 +26,17 @@ namespace ClientConvertisseurV2.Tests
             WSService ws = new WSService("https://localhost:7073/api/");
             //Act
             List<Devise> result = ws.GetDevisesAsync("devises").Result;
+            List<Devise> expectedDevises = new List<Devise>
+            {
+                new Devise(1, "Dollar", 1.08),
+                new Devise(2, "Franc Suisse", 1.07),
+                new Devise(3, "Yen", 120.0)
+            };
             //Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(List<ClientConvertisseurV2.Models.Devise>));
+            Assert.IsInstanceOfType(result, typeof(List<Devise>));
             CollectionAssert.Contains(result, new Devise(1, "Dollar", 1.08));
+            CollectionAssert.AreEqual(result, expectedDevises);
         }
     }
 }

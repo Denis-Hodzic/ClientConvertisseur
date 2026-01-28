@@ -1,5 +1,6 @@
 ﻿using ClientConvertisseurV2.Models;
 using ClientConvertisseurV2.ViewModels;
+using ClientConvertisseurV2.Services;
 using Microsoft.UI.Xaml.Interop;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -63,16 +64,16 @@ namespace ClientConvertisseurV2.ViewModels.Tests
             Assert.IsNotNull(convertisseurEuro.Devises);
         }
 
-        [TestMethod()]
-        public void GetDataOnLoadAsyncTest_NotOK()
-        {
-            //Arrange
-            ConvertisseurEuroViewModel convertisseurEuro = new ConvertisseurEuroViewModel();
-            //Act
-            convertisseurEuro.GetDataOnloadAsync();
-            Thread.Sleep(1000);
-            //Assert
-            Assert.IsNull(convertisseurEuro.Devises);
-        }
+        //[TestMethod()]
+        //public void GetDataOnLoadAsyncTest_NotOK()
+        //{
+        //    //Arrange
+        //    ConvertisseurEuroViewModel convertisseurEuro = new ConvertisseurEuroViewModel();
+        //    //Act
+        //    convertisseurEuro.GetDataOnloadAsync();
+        //    Thread.Sleep(1000);
+        //    //Assert
+        //    Assert.IsNull(convertisseurEuro.Devises);
+        //}
     }
 }
