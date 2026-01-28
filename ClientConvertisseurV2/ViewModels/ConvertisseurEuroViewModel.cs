@@ -25,7 +25,7 @@ namespace ClientConvertisseurV2.ViewModels
             BtnSetConversion = new RelayCommand(ActionSetConversion);
         }
 
-        private void ActionSetConversion()
+        public void ActionSetConversion()
         {
             if (DeviseSelected != null)
             {
