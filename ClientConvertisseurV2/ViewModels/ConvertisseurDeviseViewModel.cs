@@ -58,7 +58,7 @@ namespace ClientConvertisseurV2.ViewModels
             get => euro;
             set
             {
-                euro = value;
+                euro = Math.Round(value,2);
                 OnPropertyChanged();
             }
         }

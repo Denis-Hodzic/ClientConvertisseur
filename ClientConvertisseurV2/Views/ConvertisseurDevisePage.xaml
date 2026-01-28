@@ -9,6 +9,7 @@
     mc:Ignorable="d">
 
     <RelativePanel>
+
         <!-- Titre -->
         <TextBlock
         x:Name="TxtTitre"
@@ -19,25 +20,25 @@
         Margin="0,20,0,20"
         RelativePanel.AlignHorizontalCenterWithPanel="True" />
 
-            <!-- Label montant euros -->
-            <TextBlock
-        x:Name="TxtMontantDevise"
-        Text="Montant de la devise"
+        <!-- Label montant euros -->
+        <TextBlock
+        x:Name="TxtMontantEuroLabel"
+        Text="Montant Devise"
         Margin="0,20,0,5"
         RelativePanel.Below="TxtTitre"
         RelativePanel.AlignHorizontalCenterWithPanel="True" />
 
-            <!-- TextBox euros -->
-            <TextBox
-        x:Name="TxtDevise"
+        <!-- TextBox euros -->
+        <TextBox
+        x:Name="TxtEuro"
         Text="{Binding Montant, Mode=TwoWay}"
         Width="200"
         Margin="0,0,0,15"
-        RelativePanel.Below="TxtMontantEuro"
+        RelativePanel.Below="TxtMontantEuroLabel"
         RelativePanel.AlignHorizontalCenterWithPanel="True" />
 
-            <!-- ComboBox devises -->
-            <ComboBox
+        <!-- ComboBox devises -->
+        <ComboBox
         x:Name="CbDevises"
         Width="200"
         PlaceholderText="Devise"
@@ -46,33 +47,35 @@
         RelativePanel.AlignHorizontalCenterWithPanel="True"
         ItemsSource="{Binding Devises}"
         DisplayMemberPath="NomDevise"
-        SelectedItem="{Binding DeviseSelected, Mode=TwoWay}"/>
+        SelectedItem="{Binding DeviseSelected, Mode=TwoWay}" />
 
-            <!-- Bouton convertir -->
-            <Button
+        <!-- Bouton convertir -->
+        <Button
         x:Name="BtnConvertir"
         Content="Convertir"
         Width="200"
         Margin="0,0,0,20"
         RelativePanel.Below="CbDevises"
         RelativePanel.AlignHorizontalCenterWithPanel="True"
-        Command="{Binding BtnSetConversion}"/>
+        Command="{Binding BtnSetConversion}" />
 
-            <!-- Label résultat -->
-            <TextBlock
-        x:Name="TxtMontantDevise"
-        Text="Montant en devises"
+        <!-- Label résultat -->
+        <TextBlock
+        x:Name="TxtResultatLabel"
+        Text="Montant en devise"
         Margin="0,0,0,5"
         RelativePanel.Below="BtnConvertir"
         RelativePanel.AlignHorizontalCenterWithPanel="True" />
 
-            <!-- TextBox résultat (lecture seule) -->
+        <!-- TextBox résultat (lecture seule) -->
         <TextBox
         x:Name="TxtResultat"
-        Text="{Binding Euro, Mode=TwoWay}"
+        Text="{Binding Euro, Mode=OneWay}"
         Width="200"
         IsReadOnly="True"
-        RelativePanel.Below="TxtMontantDevise"
+        RelativePanel.Below="TxtResultatLabel"
         RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
     </RelativePanel>
+
 </Page>
