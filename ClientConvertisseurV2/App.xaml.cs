@@ -63,7 +63,7 @@ namespace ClientConvertisseurV2
             // Ensure the current window is active
             _window.Activate();
             // Navigate to the first page
-            rootFrame.Navigate(typeof(ConvertisseurDevisePage));
+            rootFrame.Navigate(typeof(ConvertisseurEuroPage));
         }
     }
 }

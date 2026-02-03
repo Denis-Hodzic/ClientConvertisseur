@@ -30,7 +30,7 @@ namespace ClientConvertisseurV2.ViewModels
         {
             if (DeviseSelected != null)
             {
-                Resultat = Euro * DeviseSelected.Taux;
+                Resultat = Math.Round(Euro / DeviseSelected.Taux,2);
             }
             else
             {
